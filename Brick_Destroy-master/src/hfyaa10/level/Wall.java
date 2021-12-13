@@ -31,6 +31,7 @@ import java.awt.geom.Point2D;
 import java.util.Random;
 
 
+
 public class Wall {
 
     private static final int LEVELS_COUNT = 4;
@@ -38,11 +39,12 @@ public class Wall {
     private static final int CLAY = 1;
     private static final int STEEL = 2;
     private static final int CEMENT = 3;
+    private static final boolean NegativeSpeed = true;
 
-    public static final int maxSpeedX = 4;
-    public static final int maxSpeedY = 4;
-    public static final int minSpeedX = -4;
-    public static final int minSpeedY = -4;
+    public static final int maxSpeedX = 6;
+    public static final int maxSpeedY = 6;
+    public static final int minSpeedX = -6;
+    public static final int minSpeedY = 3;
 
     private Random rnd;
     private Rectangle area;
@@ -70,18 +72,12 @@ public class Wall {
         ballCount = 3;
         ballLost = false;
 
-        rnd = new Random();
+        //rnd = new Random();
 
         makeBall(ballPos);
-        int speedX,speedY;
-        do{
-            speedX = rnd.nextInt(5) - 2;
-        }while(speedX == 0);
-        do{
-            speedY = -rnd.nextInt(3);
-        }while(speedY == 0);
 
-        ball.setSpeed(speedX,speedY);
+        setBallSpeed();
+
 
         player = new Player((Point) ballPos.clone(),150,10, drawArea);
 
@@ -89,6 +85,27 @@ public class Wall {
 
 
     }
+
+    private  void setBallSpeed(){
+        rnd = new Random();
+        int speedX = setSpeed(maxSpeedX,minSpeedX,!NegativeSpeed);
+        int speedY = setSpeed(maxSpeedY,minSpeedY,NegativeSpeed);
+        ball.setSpeed(speedX,speedY);
+
+    }
+
+    private int setSpeed(int upper, int lower, boolean NegativeSpeed){
+        int tempSpeed;
+        do{
+            tempSpeed = rnd.nextInt(upper - lower) + lower;
+        } while (tempSpeed == 0);
+
+        if (NegativeSpeed){
+            tempSpeed *= -1;
+        }
+        return tempSpeed;
+    }
+
 
     private Brick[] makeSingleTypeLevel(Rectangle drawArea, int brickCnt, int lineCnt, double brickSizeRatio, int type){
         /*
@@ -258,15 +275,7 @@ public class Wall {
     public void ballReset(){
         player.moveTo(startPoint);
         ball.moveTo(startPoint);
-        int speedX,speedY;
-        do{
-            speedX = rnd.nextInt(5) - 2;
-        }while(speedX == 0);
-        do{
-            speedY = -rnd.nextInt(3);
-        }while(speedY == 0);
-
-        ball.setSpeed(speedX,speedY);
+        setBallSpeed();
         ballLost = false;
     }
 
