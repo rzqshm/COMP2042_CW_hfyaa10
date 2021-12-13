@@ -93,7 +93,7 @@ abstract public class Ball {
     }
 
     // methods to enable access to private variable
-    
+
     public Point2D getUp() {  return up  ;}
 
     public Point2D getDown() {

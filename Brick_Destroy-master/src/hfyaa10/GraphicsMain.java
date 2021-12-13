@@ -22,10 +22,9 @@ import java.awt.*;
 import hfyaa10.gui.GameFrame;
 
 
-
 public class GraphicsMain {
 
-    public static void main(String[] args){
+    public static void main(String[] args) {
         EventQueue.invokeLater(() -> new GameFrame().initialize());
     }
 
