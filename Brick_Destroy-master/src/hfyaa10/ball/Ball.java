@@ -28,7 +28,7 @@ abstract public class Ball {
     public Ball(Point2D center,int radiusA,int radiusB,Color inner,Color border){
 
         this.center = center;
-        
+
         newLocation(); //ni
         setPoints(radiusA, radiusB); //ni
 

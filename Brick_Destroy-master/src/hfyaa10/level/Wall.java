@@ -39,6 +39,11 @@ public class Wall {
     private static final int STEEL = 2;
     private static final int CEMENT = 3;
 
+    public static final int maxSpeedX = 4;
+    public static final int maxSpeedY = 4;
+    public static final int minSpeedX = -4;
+    public static final int minSpeedY = -4;
+
     private Random rnd;
     private Rectangle area;
 
