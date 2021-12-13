@@ -56,13 +56,13 @@ public class HomeMenu extends JComponent implements MouseListener, MouseMotionLi
     private Font creditsFont;
     private Font buttonFont;
 
-    private GameFrame gameWindow;
+    private GameWindow gameWindow;
 
     private boolean startClicked;
     private boolean menuClicked;
 
 
-    public HomeMenu(GameFrame owner,Dimension size){
+    public HomeMenu(GameWindow owner, Dimension size){
 
         this.gameWindow = owner;
 

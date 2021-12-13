@@ -23,9 +23,9 @@ import java.awt.event.WindowEvent;
 import java.awt.event.WindowFocusListener;
 
 // the window of the game (view)
-public class GameFrame extends JFrame implements WindowFocusListener {
+public class GameWindow extends JFrame implements WindowFocusListener {
 
-    private static final String DEF_TITLE = "Brick Destroy";
+    private static final String DEF_TITLE = "Brick Destroyer!";
 
     private static final int MENU_HEIGHT = 300;
     private static final int MENU_WIDTH = 450;
@@ -35,7 +35,7 @@ public class GameFrame extends JFrame implements WindowFocusListener {
 
     private boolean focusWindow;
 
-    public GameFrame(){
+    public GameWindow(){
         super();
 
         focusWindow = false;

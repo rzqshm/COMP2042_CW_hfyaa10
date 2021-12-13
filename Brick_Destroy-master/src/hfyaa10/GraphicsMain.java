@@ -19,13 +19,13 @@ package hfyaa10;
 
 import java.awt.*;
 
-import hfyaa10.gui.GameFrame;
+import hfyaa10.gui.GameWindow;
 
 
 public class GraphicsMain {
 
     public static void main(String[] args) {
-        EventQueue.invokeLater(() -> new GameFrame().initialize());
+        EventQueue.invokeLater(() -> new GameWindow().initialize());
     }
 
 }
