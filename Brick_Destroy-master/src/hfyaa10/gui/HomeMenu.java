@@ -56,7 +56,7 @@ public class HomeMenu extends JComponent implements MouseListener, MouseMotionLi
     private Font creditsFont;
     private Font buttonFont;
 
-    private GameFrame owner;
+    private GameFrame gameWindow;
 
     private boolean startClicked;
     private boolean menuClicked;
@@ -64,7 +64,7 @@ public class HomeMenu extends JComponent implements MouseListener, MouseMotionLi
 
     public HomeMenu(GameFrame owner,Dimension size){
 
-        this.owner = owner;
+        this.gameWindow = owner;
 
         setWindowAndInput();
 
@@ -234,6 +234,7 @@ public class HomeMenu extends JComponent implements MouseListener, MouseMotionLi
     }
 
     //new method
+    // makes window focused and able to receive input
     private void setWindowAndInput(){
         this.setFocusable(true);
         this.requestFocusInWindow();    // window focus
@@ -273,7 +274,7 @@ public class HomeMenu extends JComponent implements MouseListener, MouseMotionLi
     public void mouseClicked(MouseEvent mouseEvent) {
         Point p = mouseEvent.getPoint();
         if(startButton.contains(p)){
-           owner.enableGameBoard();
+           gameWindow.showGameBoard();
 
         }
         else if(menuButton.contains(p)){
