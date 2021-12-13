@@ -22,7 +22,7 @@ import java.awt.*;
 import hfyaa10.ball.Ball;
 
 
-public class Player {
+public class Paddle {
 
 
     public static final Color BORDER_COLOR = Color.GREEN.darker().darker();
@@ -37,7 +37,7 @@ public class Player {
     private int max;
 
 
-    public Player(Point ballPoint, int width, int height, Rectangle container) {
+    public Paddle(Point ballPoint, int width, int height, Rectangle container) {
         this.ballPoint = ballPoint;
         moveAmount = 0;
         playerFace = makeRectangle(width, height);

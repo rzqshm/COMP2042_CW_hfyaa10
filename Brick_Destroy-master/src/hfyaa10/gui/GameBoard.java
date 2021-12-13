@@ -17,7 +17,7 @@
  */
 package hfyaa10.gui;
 
-import hfyaa10.player.Player;
+import hfyaa10.player.Paddle;
 import hfyaa10.level.Wall;
 import hfyaa10.brick.Brick;
 import hfyaa10.debug.DebugConsole;
@@ -39,6 +39,12 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
     private static final String PAUSE = "Pause Menu";
     private static final int TEXT_SIZE = 30;
     private static final Color MENU_COLOR = new Color(0,255,0);
+
+    public static final int BRICK_NUM = 30;
+    public static final int LINE_NUM = 3;
+    public static final int INITIAL_X_BALLPOSITION = 300;
+    public static final int INITIAL_Y_BALLPOSITION = 430;
+    public static final int BRICK_DIMENSIONRATIO = 6 / 2;
 
 
     private static final int DEF_WIDTH = 600;
@@ -77,7 +83,7 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
 
         this.initialize();
         message = "";
-        wall = new Wall(new Rectangle(0,0,DEF_WIDTH,DEF_HEIGHT),30,3,6/2,new Point(300,430));
+        wall = new Wall(new Rectangle(0,0,DEF_WIDTH,DEF_HEIGHT),BRICK_NUM,LINE_NUM,BRICK_DIMENSIONRATIO,new Point(INITIAL_X_BALLPOSITION,INITIAL_Y_BALLPOSITION));
 
         debugConsole = new DebugConsole(owner,wall,this);
         //initialize the first level
@@ -141,7 +147,7 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
             if(!b.isBroken())
                 drawBrick(b,g2d);
 
-        drawPlayer(wall.player,g2d);
+        drawPlayer(wall.paddle,g2d);
 
         if(showPauseMenu)
             drawMenu(g2d);
@@ -183,14 +189,14 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
         g2d.setColor(tmp);
     }
 
-    private void drawPlayer(Player p, Graphics2D g2d){
+    private void drawPlayer(Paddle p, Graphics2D g2d){
         Color tmp = g2d.getColor();
 
         Shape s = p.getPlayerFace();
-        g2d.setColor(Player.INNER_COLOR);
+        g2d.setColor(Paddle.INNER_COLOR);
         g2d.fill(s);
 
-        g2d.setColor(Player.BORDER_COLOR);
+        g2d.setColor(Paddle.BORDER_COLOR);
         g2d.draw(s);
 
         g2d.setColor(tmp);
@@ -278,10 +284,10 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
     public void keyPressed(KeyEvent keyEvent) {
         switch(keyEvent.getKeyCode()){
             case KeyEvent.VK_A:
-                wall.player.moveLeft();
+                wall.paddle.moveLeft();
                 break;
             case KeyEvent.VK_D:
-                wall.player.movRight();
+                wall.paddle.movRight();
                 break;
             case KeyEvent.VK_ESCAPE:
                 showPauseMenu = !showPauseMenu;
@@ -299,13 +305,13 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
                 if(keyEvent.isAltDown() && keyEvent.isShiftDown())
                     debugConsole.setVisible(true);
             default:
-                wall.player.stop();
+                wall.paddle.stop();
         }
     }
 
     @Override
     public void keyReleased(KeyEvent keyEvent) {
-        wall.player.stop();
+        wall.paddle.stop();
     }
     @Override
     public void mouseClicked(MouseEvent mouseEvent) {

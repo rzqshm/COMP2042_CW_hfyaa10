@@ -22,7 +22,7 @@ import hfyaa10.brick.Brick;
 import hfyaa10.brick.CementBrick;
 import hfyaa10.brick.ClayBrick;
 import hfyaa10.brick.SteelBrick;
-import hfyaa10.player.Player;
+import hfyaa10.player.Paddle;
 import hfyaa10.ball.Ball;
 
 
@@ -41,10 +41,10 @@ public class Wall {
     private static final int CEMENT = 3;
     private static final boolean NegativeSpeed = true;
 
-    public static final int maxSpeedX = 6;
-    public static final int maxSpeedY = 6;
-    public static final int minSpeedX = -6;
-    public static final int minSpeedY = 3;
+    public static final int maxSpeedX = 7;
+    public static final int maxSpeedY = 7;
+    public static final int minSpeedX = -7;
+    public static final int minSpeedY = 2;
 
     private Random rnd;
     private Rectangle area;
@@ -52,7 +52,7 @@ public class Wall {
     //can use publicly
     public Brick[] bricks;
     public Ball ball;
-    public Player player;
+    public Paddle paddle;
 
     private Brick[][] levels;
     private int level;
@@ -79,7 +79,7 @@ public class Wall {
         setBallSpeed();
 
 
-        player = new Player((Point) ballPos.clone(),150,10, drawArea);
+        paddle = new Paddle((Point) ballPos.clone(),150,10, drawArea);
 
         area = drawArea;
 
@@ -206,12 +206,12 @@ public class Wall {
     }
 
     public void move(){
-        player.move();
+        paddle.move();
         ball.move();
     }
 
     public void findImpacts(){
-        if(player.impact(ball)){
+        if(paddle.impact(ball)){
             ball.reverseY();
         }
         else if(impactWall()){
@@ -273,7 +273,7 @@ public class Wall {
     }
 
     public void ballReset(){
-        player.moveTo(startPoint);
+        paddle.moveTo(startPoint);
         ball.moveTo(startPoint);
         setBallSpeed();
         ballLost = false;
