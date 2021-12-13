@@ -17,9 +17,10 @@
  */
 package hfyaa10;
 
+import java.awt.*;
+
 import hfyaa10.gui.GameFrame;
 
-import java.awt.*;
 
 
 public class GraphicsMain {
