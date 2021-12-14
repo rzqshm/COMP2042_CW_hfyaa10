@@ -46,6 +46,9 @@ public class Wall {
     public static final int minSpeedX = -7;
     public static final int minSpeedY = 2;
 
+    public static final int PaddleWidth = 150;
+    public static final int PaddleHeight = 10;
+
     private Random rnd;
     private Rectangle area;
 
@@ -79,7 +82,7 @@ public class Wall {
         setBallSpeed();
 
 
-        paddle = new Paddle((Point) ballPos.clone(),150,10, drawArea);
+        paddle = new Paddle((Point) ballPos.clone(),PaddleWidth,PaddleHeight, drawArea);
 
         area = drawArea;
 

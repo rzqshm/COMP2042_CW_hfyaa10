@@ -50,7 +50,7 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
     private static final int DEF_WIDTH = 600;
     private static final int DEF_HEIGHT = 450;
 
-    private static final Color BG_COLOR = Color.WHITE;
+    private static final Color BG_COLOR = Color.BLACK;
 
     private Timer gameTimer;
 

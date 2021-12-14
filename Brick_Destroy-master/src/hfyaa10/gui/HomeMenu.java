@@ -34,11 +34,11 @@ public class HomeMenu extends JComponent implements MouseListener, MouseMotionLi
     private static final String START_TEXT = "Start";
     private static final String MENU_TEXT = "Exit";
 
-    private static final Color BG_COLOR = Color.GREEN.darker();
-    private static final Color BORDER_COLOR = new Color(200,8,21); //Venetian Red
-    private static final Color DASH_BORDER_COLOR = new  Color(255, 216, 0);//school bus yellow
+    private static final Color BG_COLOR = Color.LIGHT_GRAY.darker();
+    private static final Color BORDER_COLOR = new Color(0,0,0); //Black
+    private static final Color DASH_BORDER_COLOR = new  Color(160, 160, 160);//school bus yellow
     private static final Color TEXT_COLOR = new Color(16, 52, 166);//egyptian blue
-    private static final Color CLICKED_BUTTON_COLOR = BG_COLOR.brighter();
+    private static final Color CLICKED_BUTTON_COLOR = Color.WHITE.brighter();
     private static final Color CLICKED_TEXT = Color.WHITE;
     private static final int BORDER_SIZE = 5;
     private static final float[] DASHES = {12,6};
@@ -78,6 +78,42 @@ public class HomeMenu extends JComponent implements MouseListener, MouseMotionLi
 
     }
 
+    //new method
+    // makes window focused and able to receive input
+    private void setWindowAndInput(){
+        this.setFocusable(true);
+        this.requestFocusInWindow();    // window focus
+
+        this.addMouseListener(this);
+        this.addMouseMotionListener(this);  // mouse input listener
+    }
+
+    //new method
+    private void setMenuScreen(Dimension size){
+        menuScreen = new Rectangle(new Point(0,0),size);
+        this.setPreferredSize(size);
+    }
+
+    //new method
+    private void setMenuButtons(Dimension size){
+        Dimension btnDim = new Dimension(size.width / 3, size.height / 12);
+        startButton = new Rectangle(btnDim);
+        menuButton = new Rectangle(btnDim);
+    }
+
+    //new method
+    private void setMenuFonts(){
+        greetingsFont = new Font("Noto Mono",Font.PLAIN,25);
+        gameTitleFont = new Font("Noto Mono",Font.BOLD,40);
+        creditsFont = new Font("Monospaced",Font.PLAIN,10);
+        buttonFont = new Font("Monospaced",Font.PLAIN,startButton.height-2);
+    }
+
+    //new method
+    private void setMenuBorders(){
+        borderStoke = new BasicStroke(BORDER_SIZE,BasicStroke.CAP_ROUND,BasicStroke.JOIN_ROUND,0,DASHES,0);
+        borderStoke_noDashes = new BasicStroke(BORDER_SIZE,BasicStroke.CAP_ROUND,BasicStroke.JOIN_ROUND);
+    }
 
     public void paint(Graphics g){
         drawMenu((Graphics2D)g);
@@ -233,42 +269,6 @@ public class HomeMenu extends JComponent implements MouseListener, MouseMotionLi
 
     }
 
-    //new method
-    // makes window focused and able to receive input
-    private void setWindowAndInput(){
-        this.setFocusable(true);
-        this.requestFocusInWindow();    // window focus
-
-        this.addMouseListener(this);
-        this.addMouseMotionListener(this);  // mouse input listener
-    }
-
-    //new method
-    private void setMenuScreen(Dimension size){
-        menuScreen = new Rectangle(new Point(0,0),size);
-        this.setPreferredSize(size);
-    }
-
-    //new method
-    private void setMenuButtons(Dimension size){
-        Dimension btnDim = new Dimension(size.width / 3, size.height / 12);
-        startButton = new Rectangle(btnDim);
-        menuButton = new Rectangle(btnDim);
-    }
-
-    //new method
-    private void setMenuFonts(){
-        greetingsFont = new Font("Noto Mono",Font.PLAIN,25);
-        gameTitleFont = new Font("Noto Mono",Font.BOLD,40);
-        creditsFont = new Font("Monospaced",Font.PLAIN,10);
-        buttonFont = new Font("Monospaced",Font.PLAIN,startButton.height-2);
-    }
-
-    //new method
-    private void setMenuBorders(){
-        borderStoke = new BasicStroke(BORDER_SIZE,BasicStroke.CAP_ROUND,BasicStroke.JOIN_ROUND,0,DASHES,0);
-        borderStoke_noDashes = new BasicStroke(BORDER_SIZE,BasicStroke.CAP_ROUND,BasicStroke.JOIN_ROUND);
-    }
 
     @Override
     public void mouseClicked(MouseEvent mouseEvent) {
