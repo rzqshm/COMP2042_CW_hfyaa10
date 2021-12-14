@@ -24,6 +24,7 @@ import hfyaa10.model.brick.ClayBrick;
 import hfyaa10.model.brick.SteelBrick;
 import hfyaa10.model.player.Paddle;
 import hfyaa10.model.ball.Ball;
+import hfyaa10.model.score.*;
 
 
 import java.awt.*;
@@ -65,6 +66,9 @@ public class Wall {
     private int ballCount;
     private boolean ballLost;
 
+    //add username for user score
+    public Score User;
+
     public Wall(Rectangle drawArea, int brickCount, int lineCount, double brickDimensionRatio, Point ballPos){
 
         this.startPoint = new Point(ballPos);
@@ -86,6 +90,7 @@ public class Wall {
 
         area = drawArea;
 
+        User = new Score();
 
     }
 
@@ -216,12 +221,18 @@ public class Wall {
     public void findImpacts(){
         if(paddle.impact(ball)){
             ball.reverseY();
+
         }
         else if(impactWall()){
             /*for efficiency reverse is done into method impactWall
             * because for every brick program checks for horizontal and vertical impacts
             */
             brickCount--;
+
+            // update user score and user's bonus multiplier
+            User.incBricksDestroyed();
+            User.updateScoreMultiplier();
+            User.updateScore();
         }
         else if(impactBorder()) {
             ball.reverseX();
@@ -230,8 +241,13 @@ public class Wall {
             ball.reverseY();
         }
         else if(ball.getPosition().getY() > area.getY() + area.getHeight()){
+            // ball falls
             ballCount--;
+            User.incBallsUsed();
             ballLost = true;
+
+            //reset user's bonus multiplier
+            User.resetScoreMultiplier();
         }
     }
 

@@ -17,7 +17,7 @@
  */
 package hfyaa10.gui;
 
-import hfyaa10.model.GameBoard;
+import hfyaa10.model.level.GameBoard;
 
 import javax.swing.*;
 import java.awt.*;

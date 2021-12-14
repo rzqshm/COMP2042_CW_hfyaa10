@@ -15,13 +15,17 @@
  *  You should have received a copy of the GNU General Public License
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package hfyaa10.model;
+package hfyaa10.model.level;
 
 import hfyaa10.model.player.Paddle;
-import hfyaa10.model.level.Wall;
+
 import hfyaa10.model.brick.Brick;
 import hfyaa10.debug.DebugConsole;
 import hfyaa10.model.ball.Ball;
+import hfyaa10.model.score.ScoreTab;
+import hfyaa10.model.score.ScoreFile;
+import hfyaa10.model.score.UserScore;
+
 
 
 import javax.swing.*;
@@ -69,6 +73,9 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
 
     private DebugConsole debugConsole;
 
+    public ScoreFile scoreFile = new ScoreFile();
+    public ScoreTab scoreView = new ScoreTab(scoreFile);
+
 
     public GameBoard(JFrame owner){
         super();
@@ -85,6 +92,15 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
         message = "";
         wall = new Wall(new Rectangle(0,0,DEF_WIDTH,DEF_HEIGHT),BRICK_NUM,LINE_NUM,BRICK_DIMENSIONRATIO,new Point(INITIAL_X_BALLPOSITION,INITIAL_Y_BALLPOSITION));
 
+        // initialise score file
+        UserScore userInput = new UserScore(wall.User);
+        System.out.println("Generated new userInput object.");
+        System.out.println("Updating username.");
+        userInput.updateUsername();
+        System.out.println(wall.User.getName());
+        scoreFile.addOrUpdateScore(wall.User);
+        System.out.println("Added scores.");
+
         debugConsole = new DebugConsole(owner,wall,this);
         //initialize the first level
         wall.nextLevel();
@@ -92,11 +108,20 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
         gameTimer = new Timer(10,e ->{
             wall.move();
             wall.findImpacts();
-            message = String.format("Bricks: %d Balls %d",wall.getBrickCount(),wall.getBallCount());
+
+            message = String.format(
+                    "Bricks: %d Balls %d Score: %.0f",
+                    wall.getBrickCount(),
+                    wall.getBallCount(),
+                    wall.User.getScore()
+                    );
+
             if(wall.isBallLost()){
+                scoreFile.addOrUpdateScore(wall.User);
                 if(wall.ballEnd()){
                     wall.wallReset();
                     message = "Game over";
+                    scoreView.showScoreTable();
                 }
                 wall.ballReset();
                 gameTimer.stop();
@@ -104,6 +129,11 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
             else if(wall.isDone()){
                 if(wall.hasLevel()){
                     message = "Go to Next Level";
+
+                    //show high score screen
+                    scoreFile.addOrUpdateScore(wall.User);
+                    scoreView.showScoreTable();
+
                     gameTimer.stop();
                     wall.ballReset();
                     wall.wallReset();
@@ -111,6 +141,10 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
                 }
                 else{
                     message = "ALL WALLS DESTROYED";
+
+                    scoreFile.addOrUpdateScore(wall.User);
+                    scoreView.showScoreTable();
+
                     gameTimer.stop();
                 }
             }
@@ -293,6 +327,11 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
                 showPauseMenu = !showPauseMenu;
                 repaint();
                 gameTimer.stop();
+                break;
+            case KeyEvent.VK_H:
+                // show high score screen
+                scoreFile.addOrUpdateScore(wall.User);
+                scoreView.showScoreTable();
                 break;
             case KeyEvent.VK_SPACE:
                 if(!showPauseMenu)
