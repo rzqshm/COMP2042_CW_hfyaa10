@@ -15,6 +15,16 @@ public class HelpScreen extends JComponent implements MouseListener, MouseMotion
     JLabel info;
 
     private static final String EXIT_TEXT = "Exit";
+    private static final String infoTitle = "BRICK DESTROY 2";
+    private static final String infoDescription = "An updated and improved Brick Destroy Game originally by FilippoRanza";
+    private static final String infoGame = "Game Information";
+    private static final String info1 = "Goal is to DESTROY Walls with a Ball and Paddle.";
+    private static final String infoKeys = "A - move left      SPACE - start or pause game";
+    private static final String infoKeys1 = "D - move right      ESC - open pause menu";
+    private static final String infoKeys2 = "h - open highscore      ALT+SHITF+F1 - open console";
+    private static final String infoScore = "Your High score will be recorded with your username.";
+    private static final String infoScore1 = "Pro Tip: Hit bricks in a streak to get score multiplier ;)";
+
 
 
     private static final Color BG_COLOR = Color.LIGHT_GRAY.darker();
@@ -25,6 +35,9 @@ public class HelpScreen extends JComponent implements MouseListener, MouseMotion
     private static final Color CLICKED_TEXT = Color.WHITE;
     private static final int BORDER_SIZE = 5;
     private static final float[] DASHES = {12, 6};
+    public static final int FONT_SIZE1 = 40;
+    public static final int FONT_SIZE2 = 12;
+    public static final int FONT_SIZE3 = 20;
 
 
     private Rectangle exitButton;
@@ -34,6 +47,12 @@ public class HelpScreen extends JComponent implements MouseListener, MouseMotion
     private BasicStroke borderStoke_noDashes;
 
     private Font buttonFont;
+    private Font infoTitleFont;
+    private Font infoDescriptionFont;
+    private Font infoGameFont;
+    private Font info1Font;
+    private Font infoKeysFont;
+    private Font infoScoreFont;
 
     private final GameWindow gameWindow;
 
@@ -77,6 +96,17 @@ public class HelpScreen extends JComponent implements MouseListener, MouseMotion
 
     private void setFonts() {
         buttonFont = new Font("Monospaced", Font.PLAIN, exitButton.height - 2);
+        infoTitleFont = new Font("Noto Mono", Font.BOLD, FONT_SIZE1);
+        infoDescriptionFont = new Font("Noto Mono", Font.PLAIN, FONT_SIZE2);
+        infoGameFont = new Font("Not Mono", Font.BOLD, FONT_SIZE3);
+        info1Font = new Font("Not Mono", Font.PLAIN, FONT_SIZE2);
+        infoKeysFont = new Font("Not Mono", Font.BOLD, FONT_SIZE2);
+        infoScoreFont = new Font("Not Mono", Font.PLAIN, FONT_SIZE2);
+
+
+
+
+
     }
 
     private void setBorders() {
@@ -107,7 +137,7 @@ public class HelpScreen extends JComponent implements MouseListener, MouseMotion
         g2d.translate(x, y);
 
         //methods calls
-        //drawText(g2d);
+        drawText(g2d);
         drawButton(g2d);
         //end of methods calls
 
@@ -148,7 +178,7 @@ public class HelpScreen extends JComponent implements MouseListener, MouseMotion
         g2d.setFont(buttonFont);
 
         int x = (helpScreen.width - exitButton.width) / 2;
-        int y = (int) ((helpScreen.height - exitButton.height) * 0.85);
+        int y = (int) ((helpScreen.height - exitButton.height) * 0.9);
 
         exitButton.setLocation(x, y);
 
@@ -170,6 +200,79 @@ public class HelpScreen extends JComponent implements MouseListener, MouseMotion
             g2d.draw(exitButton);
             g2d.drawString(EXIT_TEXT, x, y);
         }
+
+
+    }
+
+    private void drawText(Graphics2D g2d) {
+
+        g2d.setColor(TEXT_COLOR);
+
+        FontRenderContext frc = g2d.getFontRenderContext();
+
+        Rectangle2D infoTitleRect = infoTitleFont.getStringBounds(infoTitle, frc);
+        Rectangle2D infoDescriptionRect = infoDescriptionFont.getStringBounds(infoDescription, frc);
+        Rectangle2D infoGameRect = infoGameFont.getStringBounds(infoGame, frc);
+        Rectangle2D info1Rect = info1Font.getStringBounds(info1, frc);
+        Rectangle2D infoKeyRect = infoKeysFont.getStringBounds(infoKeys, frc);
+        Rectangle2D infoKeyRect1 = infoKeysFont.getStringBounds(infoKeys1, frc);
+        Rectangle2D infoKeyRect2 = infoKeysFont.getStringBounds(infoKeys2, frc);
+        Rectangle2D infoScoreRect = infoScoreFont.getStringBounds(infoScore, frc);
+        Rectangle2D infoScoreRect1 = infoScoreFont.getStringBounds(infoScore1, frc);
+
+        int sX, sY;
+
+        //title
+        sX = (int) (helpScreen.getWidth() - infoTitleRect.getWidth()) / 2;
+        sY = (int) (helpScreen.getHeight() / 8);
+        g2d.setFont(infoTitleFont);
+        g2d.drawString(infoTitle, sX, sY);
+
+        //description
+        sX = (int) (helpScreen.getWidth() - infoDescriptionRect.getWidth()) / 2;
+        sY += (int) infoDescriptionRect.getHeight() * 0.8;
+        g2d.setFont(infoDescriptionFont);
+        g2d.drawString(infoDescription, sX, sY);
+
+        //Game information
+        sX = (int) (helpScreen.getWidth() - (infoGameRect.getWidth()*2.6)) ;
+        sY += (int) infoGameRect.getHeight() * 1.5;
+        g2d.setFont(infoGameFont);
+        g2d.drawString(infoGame, sX, sY);
+
+
+        sX = (int) (helpScreen.getWidth() - info1Rect.getWidth())/15 ;
+        sY += (int) info1Rect.getHeight() * 1;
+        g2d.setFont(info1Font);
+        g2d.drawString(info1, sX, sY);
+
+        //Key binds
+        sX = (int) (helpScreen.getWidth() - infoKeyRect.getWidth()) / 2;
+        sY += (int) infoKeyRect.getHeight() * 2;
+        g2d.setFont(infoKeysFont);
+        g2d.drawString(infoKeys, sX, sY);
+
+        sX = (int) (helpScreen.getWidth() - infoKeyRect1.getWidth()) / 2;
+        sY += (int) infoKeyRect1.getHeight() * 1.5;
+        g2d.setFont(infoKeysFont);
+        g2d.drawString(infoKeys1, sX, sY);
+
+        sX = (int) (helpScreen.getWidth() - infoKeyRect2.getWidth()) / 2;
+        sY += (int) infoKeyRect2.getHeight() * 1.5;
+        g2d.setFont(infoKeysFont);
+        g2d.drawString(infoKeys2, sX, sY);
+
+        //score info
+        sX = (int) (helpScreen.getWidth() - infoScoreRect.getWidth()) / 2;
+        sY += (int) infoScoreRect.getHeight() * 2.5;
+        g2d.setFont(infoScoreFont);
+        g2d.drawString(infoScore, sX, sY);
+
+        sX = (int) (helpScreen.getWidth() - infoScoreRect1.getWidth()) / 2;
+        sY += (int) infoScoreRect1.getHeight() * 1;
+        g2d.setFont(infoScoreFont);
+        g2d.drawString(infoScore1, sX, sY);
+
 
 
     }
