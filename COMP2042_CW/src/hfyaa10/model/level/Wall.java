@@ -15,15 +15,15 @@
  *  You should have received a copy of the GNU General Public License
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package hfyaa10.level;
+package hfyaa10.model.level;
 
-import hfyaa10.ball.RubberBall;
-import hfyaa10.brick.Brick;
-import hfyaa10.brick.CementBrick;
-import hfyaa10.brick.ClayBrick;
-import hfyaa10.brick.SteelBrick;
-import hfyaa10.player.Paddle;
-import hfyaa10.ball.Ball;
+import hfyaa10.model.ball.RubberBall;
+import hfyaa10.model.brick.Brick;
+import hfyaa10.model.brick.CementBrick;
+import hfyaa10.model.brick.ClayBrick;
+import hfyaa10.model.brick.SteelBrick;
+import hfyaa10.model.player.Paddle;
+import hfyaa10.model.ball.Ball;
 
 
 import java.awt.*;

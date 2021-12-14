@@ -17,6 +17,8 @@
  */
 package hfyaa10.gui;
 
+import hfyaa10.model.GameBoard;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.WindowEvent;

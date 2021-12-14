@@ -1,4 +1,4 @@
-package hfyaa10.brick;
+package hfyaa10.model.brick;
 
 
 import java.awt.*;

@@ -17,7 +17,7 @@
  */
 package hfyaa10.debug;
 
-import hfyaa10.level.Wall;
+import hfyaa10.model.level.Wall;
 
 import javax.swing.*;
 import javax.swing.event.ChangeListener;

@@ -1,7 +1,7 @@
-package hfyaa10.brick;
+package hfyaa10.model.brick;
 
 // import game packages
-import hfyaa10.ball.Ball;
+import hfyaa10.model.ball.Ball;
 
 import java.awt.*;
 import java.awt.Point;

@@ -1,4 +1,4 @@
-package hfyaa10.ball;
+package hfyaa10.model.ball;
 
 import java.awt.*;
 import java.awt.geom.Point2D;

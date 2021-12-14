@@ -17,9 +17,9 @@
  */
 package hfyaa10.debug;
 
-import hfyaa10.gui.GameBoard;
-import hfyaa10.level.Wall;
-import hfyaa10.ball.Ball;
+import hfyaa10.model.GameBoard;
+import hfyaa10.model.level.Wall;
+import hfyaa10.model.ball.Ball;
 
 
 
