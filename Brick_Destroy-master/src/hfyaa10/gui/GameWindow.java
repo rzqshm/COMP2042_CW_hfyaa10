@@ -26,12 +26,12 @@ import java.awt.event.WindowFocusListener;
 public class GameWindow extends JFrame implements WindowFocusListener {
 
     private static final String DEF_TITLE = "Brick Destroyer!";
-
     private static final int MENU_HEIGHT = 300;
     private static final int MENU_WIDTH = 450;
 
     private GameBoard gameBoard;
-    private HomeMenu menuScreen;
+    private MenuScreen menuScreen;
+    private HelpScreen helpScreen;
 
     private boolean focusWindow;
 
@@ -43,12 +43,10 @@ public class GameWindow extends JFrame implements WindowFocusListener {
         this.setLayout(new BorderLayout());
 
         gameBoard = new GameBoard(this);
-
-        menuScreen = new HomeMenu(this,new Dimension(MENU_WIDTH,MENU_HEIGHT));
+        menuScreen = new MenuScreen(this,new Dimension(MENU_WIDTH,MENU_HEIGHT));
+        helpScreen = new HelpScreen(this,new Dimension(MENU_WIDTH,MENU_HEIGHT)); // same size as menu screen
 
         showHomeMenu();
-
-
     }
 
     public void showHomeMenu(){
@@ -64,13 +62,38 @@ public class GameWindow extends JFrame implements WindowFocusListener {
         this.setVisible(true);
     }
 
-    public void showGameBoard(){
+    public void showGameWindow(){
         this.dispose();
         this.remove(menuScreen);
         this.add(gameBoard,BorderLayout.CENTER);
         this.setUndecorated(false);
         initialize();
         /*to avoid problems with graphics focus controller is added here*/
+        this.addWindowFocusListener(this);
+
+    }
+
+    public void showHelpFrame() {
+        this.dispose();
+        this.remove(menuScreen);
+        this.add(helpScreen, BorderLayout.CENTER);
+        this.setUndecorated(false);
+        initialize();
+        /*to avoid problems with graphics, focus controller is added here*/
+        this.addWindowFocusListener(this);
+
+
+    }
+
+
+
+    public void showMenu() {
+        this.dispose();
+        this.remove(helpScreen);
+        this.add(menuScreen, BorderLayout.CENTER);
+        this.setUndecorated(false);
+        initialize();
+        /*to avoid problems with graphics, focus controller is added here*/
         this.addWindowFocusListener(this);
 
     }

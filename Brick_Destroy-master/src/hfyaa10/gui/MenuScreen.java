@@ -26,13 +26,14 @@ import java.awt.font.FontRenderContext;
 import java.awt.geom.Rectangle2D;
 
 
-public class HomeMenu extends JComponent implements MouseListener, MouseMotionListener {
+public class MenuScreen extends JComponent implements MouseListener, MouseMotionListener {
 
     private static final String GREETINGS = "Welcome to:";
     private static final String GAME_TITLE = "Brick Destroy";
     private static final String CREDITS = "Version 0.1";
     private static final String START_TEXT = "Start";
     private static final String MENU_TEXT = "Exit";
+    private static final String HELP_TEXT = "Help";
 
     private static final Color BG_COLOR = Color.LIGHT_GRAY.darker();
     private static final Color BORDER_COLOR = new Color(0,0,0); //Black
@@ -46,6 +47,7 @@ public class HomeMenu extends JComponent implements MouseListener, MouseMotionLi
     private Rectangle menuScreen;
     private Rectangle startButton;
     private Rectangle menuButton;
+    private Rectangle helpButton;
 
 
     private BasicStroke borderStoke;
@@ -60,21 +62,19 @@ public class HomeMenu extends JComponent implements MouseListener, MouseMotionLi
 
     private boolean startClicked;
     private boolean menuClicked;
+    private boolean helpClicked;
 
-
-    public HomeMenu(GameWindow owner, Dimension size){
+    public MenuScreen(GameWindow owner, Dimension size){
 
         this.gameWindow = owner;
 
         setWindowAndInput();
 
-        setMenuScreen(size);
+        setScreen(size);
+        setButtons(size);
 
-        setMenuButtons(size);
-
-        setMenuBorders();
-
-        setMenuFonts();
+        setBorders();
+        setFonts();
 
     }
 
@@ -89,20 +89,21 @@ public class HomeMenu extends JComponent implements MouseListener, MouseMotionLi
     }
 
     //new method
-    private void setMenuScreen(Dimension size){
+    private void setScreen(Dimension size){
         menuScreen = new Rectangle(new Point(0,0),size);
         this.setPreferredSize(size);
     }
 
     //new method
-    private void setMenuButtons(Dimension size){
+    private void setButtons(Dimension size){
         Dimension btnDim = new Dimension(size.width / 3, size.height / 12);
         startButton = new Rectangle(btnDim);
         menuButton = new Rectangle(btnDim);
+        helpButton = new Rectangle(btnDim);
     }
 
     //new method
-    private void setMenuFonts(){
+    private void setFonts(){
         greetingsFont = new Font("Noto Mono",Font.PLAIN,25);
         gameTitleFont = new Font("Noto Mono",Font.BOLD,40);
         creditsFont = new Font("Monospaced",Font.PLAIN,10);
@@ -110,7 +111,7 @@ public class HomeMenu extends JComponent implements MouseListener, MouseMotionLi
     }
 
     //new method
-    private void setMenuBorders(){
+    private void setBorders(){
         borderStoke = new BasicStroke(BORDER_SIZE,BasicStroke.CAP_ROUND,BasicStroke.JOIN_ROUND,0,DASHES,0);
         borderStoke_noDashes = new BasicStroke(BORDER_SIZE,BasicStroke.CAP_ROUND,BasicStroke.JOIN_ROUND);
     }
@@ -126,7 +127,7 @@ public class HomeMenu extends JComponent implements MouseListener, MouseMotionLi
 
         /*
         all the following method calls need a relative
-        painting directly into the HomeMenu rectangle,
+        painting directly into the MenuScreen rectangle,
         so the translation is made here so the other methods do not do that.
          */
         Color prevColor = g2d.getColor();
@@ -207,11 +208,12 @@ public class HomeMenu extends JComponent implements MouseListener, MouseMotionLi
 
         Rectangle2D txtRect = buttonFont.getStringBounds(START_TEXT,frc);
         Rectangle2D mTxtRect = buttonFont.getStringBounds(MENU_TEXT,frc);
+        Rectangle2D hTxtRect = buttonFont.getStringBounds(HELP_TEXT, frc);
 
         g2d.setFont(buttonFont);
 
         int x = (menuScreen.width - startButton.width) / 2;
-        int y =(int) ((menuScreen.height - startButton.height) * 0.8);
+        int y =(int) ((menuScreen.height - startButton.height) * 0.6);
 
         startButton.setLocation(x,y);
 
@@ -242,29 +244,52 @@ public class HomeMenu extends JComponent implements MouseListener, MouseMotionLi
 
         y *= 1.2;
 
-        menuButton.setLocation(x,y);
+        helpButton.setLocation(x,y);
 
 
+        x = (int)(helpButton.getWidth() - mTxtRect.getWidth()) / 2;
+        y = (int)(helpButton.getHeight() - mTxtRect.getHeight()) / 2;
 
+        x += helpButton.x;
+        y += helpButton.y + (startButton.height * 0.9);
 
-        x = (int)(menuButton.getWidth() - mTxtRect.getWidth()) / 2;
-        y = (int)(menuButton.getHeight() - mTxtRect.getHeight()) / 2;
+        if(helpClicked){
+            Color tmp = g2d.getColor();
+
+            g2d.setColor(CLICKED_BUTTON_COLOR);
+            g2d.draw(helpButton);
+            g2d.setColor(CLICKED_TEXT);
+            g2d.drawString(HELP_TEXT,x,y);
+            g2d.setColor(tmp);
+        }
+        else{
+            g2d.draw(helpButton);
+            g2d.drawString(HELP_TEXT,x,y);
+        }
+        x = helpButton.x;
+        y = helpButton.y;
+
+        y *= 1.2;
+
+        menuButton.setLocation(x, y);
+
+        x = (int) (menuButton.getWidth() - mTxtRect.getWidth()) / 2;
+        y = (int) (menuButton.getHeight() - mTxtRect.getHeight()) / 2;
 
         x += menuButton.x;
         y += menuButton.y + (startButton.height * 0.9);
 
-        if(menuClicked){
+        if (menuClicked) {
             Color tmp = g2d.getColor();
 
             g2d.setColor(CLICKED_BUTTON_COLOR);
             g2d.draw(menuButton);
             g2d.setColor(CLICKED_TEXT);
-            g2d.drawString(MENU_TEXT,x,y);
+            g2d.drawString(MENU_TEXT, x, y);
             g2d.setColor(tmp);
-        }
-        else{
+        } else {
             g2d.draw(menuButton);
-            g2d.drawString(MENU_TEXT,x,y);
+            g2d.drawString(MENU_TEXT, x, y);
         }
 
     }
@@ -274,12 +299,14 @@ public class HomeMenu extends JComponent implements MouseListener, MouseMotionLi
     public void mouseClicked(MouseEvent mouseEvent) {
         Point p = mouseEvent.getPoint();
         if(startButton.contains(p)){
-           gameWindow.showGameBoard();
+           gameWindow.showGameWindow();
 
         }
         else if(menuButton.contains(p)){
             System.out.println("Goodbye " + System.getProperty("user.name"));
             System.exit(0);
+        } else if (helpButton.contains(p)){
+            gameWindow.showHelpFrame();
         }
     }
 
@@ -306,6 +333,9 @@ public class HomeMenu extends JComponent implements MouseListener, MouseMotionLi
         else if(menuClicked){
             menuClicked = false;
             repaint(menuButton.x,menuButton.y,menuButton.width+1,menuButton.height+1);
+        } else if (helpClicked){
+            helpClicked = true;
+            repaint(helpButton.x, helpButton.y, helpButton.width + 1, helpButton.height + 1);
         }
     }
 
@@ -328,7 +358,7 @@ public class HomeMenu extends JComponent implements MouseListener, MouseMotionLi
     @Override
     public void mouseMoved(MouseEvent mouseEvent) {
         Point p = mouseEvent.getPoint();
-        if(startButton.contains(p) || menuButton.contains(p))
+        if(startButton.contains(p) || menuButton.contains(p) || helpButton.contains(p))
             this.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         else
             this.setCursor(Cursor.getDefaultCursor());
