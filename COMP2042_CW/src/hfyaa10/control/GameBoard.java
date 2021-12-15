@@ -17,11 +17,11 @@
  */
 package hfyaa10.control;
 
-import hfyaa10.control.Wall;
+import hfyaa10.control.levels.Wall;
 import hfyaa10.model.player.Paddle;
 
 import hfyaa10.model.brick.Brick;
-import hfyaa10.control.DebugConsole;
+import hfyaa10.control.debug.DebugConsole;
 import hfyaa10.model.ball.Ball;
 import hfyaa10.model.score.ScoreTab;
 import hfyaa10.model.score.ScoreFile;

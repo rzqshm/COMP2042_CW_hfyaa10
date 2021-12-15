@@ -60,9 +60,25 @@ instead of 2.
 ---
 ## Refactoring Project
 
-- ### Re-organized Packages and Classes
+- ### Package and Class
   
-  - Packages are made and named according to what classes they contain. 
+  - Organisation and renaming-> New Packages are made and named according to what classes they contain. Classes that are 
+  related get moved and organized into Packages. Some classes have been renamed to better
+  represent itself in the program. Multiple packages have been made to organize the classes
+  but all are under 3 main packages which are `control`,`model` and `viewGui`.
+  
+  - Encapsulation -> Has been done on big classes and methods so that the code is more 
+  understandable to programmers. It has been done to classes and methods that disclose the 
+  actual logic and flow of that method or class.
+- ### Design Pattern
+
+  - The MVC design pattern has been implemented to the project. The model, view and 
+  controller aspect of the design pattern can be seen by the package structure. Here are the
+  packages:
+  
+    - `model` - ball, brick, player, score
+    - `viewGui` - GameWindow, HelpScreen, MenuScreen
+    - `control` - GameBoard, debug and levels
 
 
 
