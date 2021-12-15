@@ -37,8 +37,8 @@ public class MenuScreen extends JComponent implements MouseListener, MouseMotion
 
     private static final Color BG_COLOR = Color.LIGHT_GRAY.darker();
     private static final Color BORDER_COLOR = new Color(0,0,0); //Black
-    private static final Color DASH_BORDER_COLOR = new  Color(160, 160, 160);//school bus yellow
-    private static final Color TEXT_COLOR = new Color(16, 52, 166);//egyptian blue
+    private static final Color DASH_BORDER_COLOR = new  Color(160, 160, 160);//gray
+    private static final Color TEXT_COLOR = new Color(0, 0, 0);//egyptian blue
     private static final Color CLICKED_BUTTON_COLOR = Color.WHITE.brighter();
     private static final Color CLICKED_TEXT = Color.WHITE;
     private static final int BORDER_SIZE = 5;
