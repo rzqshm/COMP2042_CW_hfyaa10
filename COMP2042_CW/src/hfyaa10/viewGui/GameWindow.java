@@ -15,9 +15,9 @@
  *  You should have received a copy of the GNU General Public License
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package hfyaa10.gui;
+package hfyaa10.viewGui;
 
-import hfyaa10.model.level.GameBoard;
+import hfyaa10.model.GameBoard;
 
 import javax.swing.*;
 import java.awt.*;

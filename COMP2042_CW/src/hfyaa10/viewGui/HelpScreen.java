@@ -1,4 +1,4 @@
-package hfyaa10.gui;
+package hfyaa10.viewGui;
 
 import javax.swing.*;
 import java.awt.*;

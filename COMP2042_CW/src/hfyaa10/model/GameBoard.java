@@ -15,8 +15,9 @@
  *  You should have received a copy of the GNU General Public License
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package hfyaa10.model.level;
+package hfyaa10.model;
 
+import hfyaa10.model.level.Wall;
 import hfyaa10.model.player.Paddle;
 
 import hfyaa10.model.brick.Brick;

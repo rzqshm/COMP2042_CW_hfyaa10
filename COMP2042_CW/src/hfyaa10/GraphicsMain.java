@@ -19,7 +19,7 @@ package hfyaa10;
 
 import java.awt.*;
 
-import hfyaa10.gui.GameWindow;
+import hfyaa10.viewGui.GameWindow;
 
 
 public class GraphicsMain {
