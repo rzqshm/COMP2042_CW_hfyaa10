@@ -25,6 +25,19 @@ abstract public class Brick  {
     public static final int LEFT_IMPACT = 300;
     public static final int RIGHT_IMPACT = 400;
 
+    private static Random rnd;
+
+    private String name;
+    Shape brickFace;
+
+    private Color border;
+    private Color inner;
+
+    private int fullStrength;
+    private int strength;
+
+    private boolean broken;
+
 
 
     public class Crack{
@@ -176,19 +189,6 @@ abstract public class Brick  {
         }
 
     }
-
-    private static Random rnd;
-
-    private String name;
-    Shape brickFace;
-
-    private Color border;
-    private Color inner;
-
-    private int fullStrength;
-    private int strength;
-
-    private boolean broken;
 
 
     public Brick(String name, Point pos,Dimension size,Color border,Color inner,int strength){

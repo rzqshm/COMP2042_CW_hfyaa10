@@ -60,7 +60,6 @@ public class ScoreFile {
         score.setScore(Float.parseFloat(scoreStrings[scoreColumn]));
         score.setUsedBalls(Integer.parseInt(scoreStrings[usedBallsColumn]));
         score.setDestroyedBricks(Integer.parseInt(scoreStrings[destroyedBricksColumn]));
-        // might be duplicated
         scores.add(score);
         sortByScores();
     }
@@ -89,7 +88,7 @@ public class ScoreFile {
                 sortByScores();
                 saveScoresToFile();
             } else if (existing.equals(score)) {
-                // if the current score is the best score
+                // save new high score
                 sortByScores();
                 saveScoresToFile();
             }

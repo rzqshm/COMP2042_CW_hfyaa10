@@ -29,15 +29,15 @@ abstract public class Ball {
 
         this.center = center;
 
-        newLocation(); //ni
-        setPoints(radiusA, radiusB); //ni
+        newLocation(); // here
+        setPoints(radiusA, radiusB); // here
 
         ballFace = makeBall(center,radiusA,radiusB);
 
         this.border = border;
         this.inner  = inner;
 
-        setSpeed(0, 0); //ni
+        setSpeed(0, 0); // here
 
     }
 
@@ -56,6 +56,7 @@ abstract public class Ball {
         ballFace = tmp;
     }
 
+    //here
     public void setSpeed(int x,int y){
         speedX = x;
         speedY = y;
@@ -120,6 +121,7 @@ abstract public class Ball {
         ballFace = tmp;
     }
 
+    //here
     private void setPoints(double width,double height){
         up.setLocation(center.getX(),center.getY()-(height / 2));
         down.setLocation(center.getX(),center.getY()+(height / 2));
@@ -136,6 +138,7 @@ abstract public class Ball {
         return speedY;
     }
 
+    //here
     private void newLocation(){
         up = new Point2D.Double();
         down = new Point2D.Double();

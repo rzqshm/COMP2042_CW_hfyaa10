@@ -53,7 +53,7 @@ public class Wall {
     private Random rnd;
     private Rectangle area;
 
-    //can use publicly
+
     public Brick[] bricks;
     public Ball ball;
     public Paddle paddle;

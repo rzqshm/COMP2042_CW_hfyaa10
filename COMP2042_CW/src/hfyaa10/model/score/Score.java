@@ -4,13 +4,12 @@ package hfyaa10.model.score;
 import java.util.ArrayList;
 
 public class Score {
-    // scoreMultiplier: score is determined by most recent scoreMultiplier only
+
 
     public static final float BonusMultiplier = 1.0F;
     public static final float baseBonusMultiplier = 1.0F;
 
     private float scoreMultiplier;
-
     private int BricksBallDestroyed;
     private int destroyedBricks;
     private int usedBalls;

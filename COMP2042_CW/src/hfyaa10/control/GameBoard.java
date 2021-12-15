@@ -75,8 +75,8 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
 
     private DebugConsole debugConsole;
 
-    public ScoreFile scoreFile = new ScoreFile();
-    public ScoreTab scoreView = new ScoreTab(scoreFile);
+    public ScoreFile scoreFile = new ScoreFile(); //
+    public ScoreTab scoreView = new ScoreTab(scoreFile); //
 
 
     public GameBoard(JFrame owner){
@@ -105,7 +105,7 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
         System.out.println("Added scores.");
 
         debugConsole = new DebugConsole(owner,wall,this);
-        //initialize the first level
+
         wall.nextLevel();
 
         gameTimer = new Timer(10,e ->{
@@ -181,8 +181,8 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
         clear(g2d);
 
         g2d.setColor(Color.WHITE);
-        g2d.drawString(inGameScoreMonitor,225,225);
-        g2d.drawString(inGameMultiplierMonitor,395,445);
+        g2d.drawString(inGameScoreMonitor,225,225); // display score  on screen
+        g2d.drawString(inGameMultiplierMonitor,395,445); // display bonus multiplier on screen
 
         drawBall(wall.ball,g2d);
 
@@ -190,7 +190,7 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
             if(!b.isBroken())
                 drawBrick(b,g2d);
 
-        drawPlayer(wall.paddle,g2d);
+        drawPaddle(wall.paddle,g2d);
 
         if(showPauseMenu)
             drawMenu(g2d);
@@ -232,7 +232,7 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
         g2d.setColor(tmp);
     }
 
-    private void drawPlayer(Paddle p, Graphics2D g2d){
+    private void drawPaddle(Paddle p, Graphics2D g2d){
         Color tmp = g2d.getColor();
 
         Shape s = p.getPaddleFace();
