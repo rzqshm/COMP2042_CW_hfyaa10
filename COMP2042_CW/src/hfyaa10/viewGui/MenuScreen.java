@@ -30,7 +30,7 @@ public class MenuScreen extends JComponent implements MouseListener, MouseMotion
 
     private static final String GREETINGS = "Welcome to:";
     private static final String GAME_TITLE = "Brick Destroy";
-    private static final String CREDITS = "Version 0.1";
+    private static final String CREDITS = "Version Razeeq 20203994 - COMP2042_CW_hfyaa10";
     private static final String START_TEXT = "Start";
     private static final String MENU_TEXT = "Exit";
     private static final String HELP_TEXT = "Help";
@@ -106,7 +106,7 @@ public class MenuScreen extends JComponent implements MouseListener, MouseMotion
     private void setFonts(){
         greetingsFont = new Font("Noto Mono",Font.PLAIN,25);
         gameTitleFont = new Font("Noto Mono",Font.BOLD,40);
-        creditsFont = new Font("Monospaced",Font.PLAIN,10);
+        creditsFont = new Font("Monospaced",Font.PLAIN,12);
         buttonFont = new Font("Monospaced",Font.PLAIN,startButton.height-2);
     }
 
@@ -188,13 +188,13 @@ public class MenuScreen extends JComponent implements MouseListener, MouseMotion
         g2d.drawString(GREETINGS,sX,sY);
 
         sX = (int)(menuScreen.getWidth() - gameTitleRect.getWidth()) / 2;
-        sY += (int) gameTitleRect.getHeight() * 1.1;//add 10% of String height between the two strings
+        sY += (int) gameTitleRect.getHeight();//add 10% of String height between the two strings
 
         g2d.setFont(gameTitleFont);
         g2d.drawString(GAME_TITLE,sX,sY);
 
         sX = (int)(menuScreen.getWidth() - creditsRect.getWidth()) / 2;
-        sY += (int) creditsRect.getHeight() * 1.1;
+        sY += (int) creditsRect.getHeight() * 1.2; //add 20% of String height between the two strings
 
         g2d.setFont(creditsFont);
         g2d.drawString(CREDITS,sX,sY);
