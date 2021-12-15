@@ -7,12 +7,10 @@ import javax.swing.table.DefaultTableModel;
 import java.util.ArrayList;
 
 public class ScoreTab {
-    private static final String WINDOW_TITLE = "Brick Destroy High Scores";
+    private static final String WindowTitle = "High Scores LeaderBoard";
 
-    private static final String[] HEADERS = {
-            "Player Name",
-            "Balls Used",
-            "Bricks Destroyed",
+    private static final String[] ScoreTableHeaders = {
+            "Player UserName",
             "Score"
     };
 
@@ -20,45 +18,45 @@ public class ScoreTab {
     JTable table;
     JScrollPane scrollPane;
 
-    ScoreFile highScoreFile;
+    ScoreFile scoresFile;
 
-    public ScoreTab(ScoreFile highScoreFile) {
-        this.highScoreFile = highScoreFile;
-        initHighScoreView();
+    public ScoreTab(ScoreFile scoresFile) {
+        this.scoresFile = scoresFile;
+        initializeScoreScreen();
     }
 
-    public void initHighScoreView() {
+    public void initializeScoreScreen() {
 
         frame = new JFrame();
-        frame.setTitle(WINDOW_TITLE);
+        frame.setTitle(WindowTitle);
         frame.setSize(500, 500);
 
-        String[][] highScoreStrings = generateHighScoreStrings();
-        table = new JTable(highScoreStrings, HEADERS);
+        String[][] highScoreStrings = generateScoreStrings();
+        table = new JTable(highScoreStrings, ScoreTableHeaders);
 
         scrollPane = new JScrollPane(table);
         frame.add(scrollPane);
     }
 
-    public void updateHighScoreView() {
-        String[][] highScoreStrings = generateHighScoreStrings();
-        DefaultTableModel tableData = new DefaultTableModel(highScoreStrings, HEADERS);
+    public void updateScoreScreen() {
+        String[][] highScoreStrings = generateScoreStrings();
+        DefaultTableModel tableData = new DefaultTableModel(highScoreStrings, ScoreTableHeaders);
         table.setModel(tableData);
     }
 
-    private String[][] generateHighScoreStrings() {
+    private String[][] generateScoreStrings() {
 
         ArrayList<String[]> highScoreStrings = new ArrayList<>();
 
-        for (Score score: highScoreFile.getScores()) {
-            highScoreStrings.add(score.scoreToSeparatedStrings());
+        for (Score score: scoresFile.getScores()) {
+            highScoreStrings.add(score.scoreToMultipleStrings());
         }
 
         return highScoreStrings.toArray(new String[0][]);
     }
 
     public void showScoreTable() {
-        updateHighScoreView();
+        updateScoreScreen();
         frame.pack();
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);

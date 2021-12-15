@@ -79,8 +79,6 @@ public class Wall {
         ballCount = 3;
         ballLost = false;
 
-        //rnd = new Random();
-
         makeBall(ballPos);
 
         setBallSpeed();
@@ -230,9 +228,9 @@ public class Wall {
             brickCount--;
 
             // update user score and user's bonus multiplier
-            User.incBricksDestroyed();
-            User.updateScoreMultiplier();
-            User.updateScore();
+            User.addBricksDestroyed();
+            User.updateBonusMultiplier();
+            User.currentScore();
         }
         else if(impactBorder()) {
             ball.reverseX();
@@ -243,11 +241,11 @@ public class Wall {
         else if(ball.getPosition().getY() > area.getY() + area.getHeight()){
             // ball falls
             ballCount--;
-            User.incBallsUsed();
+            User.addUsedBalls();
             ballLost = true;
 
             //reset user's bonus multiplier
-            User.resetScoreMultiplier();
+            User.resetBonusMultiplier();
         }
     }
 

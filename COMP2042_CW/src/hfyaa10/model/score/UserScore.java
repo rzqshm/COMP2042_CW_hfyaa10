@@ -2,13 +2,10 @@ package hfyaa10.model.score;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.WindowEvent;
 
 public class UserScore {
-    private static final int WINDOW_WIDTH = 300;
-    private static final int WINDOW_HEIGHT = 150;
+    private static final int windowWidth = 300;
+    private static final int windowHeight = 150;
 
     private final JFrame frame;
 
@@ -18,16 +15,16 @@ public class UserScore {
 
         this.player = player;
         frame = new JFrame();
-        frame.setPreferredSize(new Dimension(WINDOW_WIDTH, WINDOW_HEIGHT));
+        frame.setPreferredSize(new Dimension(windowWidth, windowHeight));
 
     }
 
-    public void updateUsername() {
+    public void inputUsername() {
         player.setName(
                 (String) JOptionPane.showInputDialog(
                         frame,
-                        "Input your username:",
-                        "Username",
+                        "Please enter your username:",
+                        "Brick Destoyer Login",
                         JOptionPane.PLAIN_MESSAGE,
                         null,
                         null,

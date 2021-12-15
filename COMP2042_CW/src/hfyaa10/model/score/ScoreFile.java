@@ -8,26 +8,26 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class ScoreFile {
-    public static final String FILEPATH = "scores.txt";
-    private static final int COL_NAME = 0;
-    private static final int COL_BALLS_USED = 1;
-    private static final int COL_BRICKS_DESTROYED = 2;
-    private static final int COL_SCORE = 3;
-    private static final int NUM_COLS = 4;
-    private static final String DELIMITER = ", ";
-    private static final int SCORE_NOT_FOUND = -1;
+    public static final String filepath = "scores.txt";
+    private static final int nameColumn = 0;
+    private static final int scoreColumn = 1;
+    private static final int usedBallsColumn = 2;
+    private static final int destroyedBricksColumn = 3;
+    private static final int ColumnAmount = 4;
+    private static final String delimiter = ", ";
+    private static final int noScore = -1;
 
     private final ArrayList<Score> scores = new ArrayList<>();
     private File file;
 
     public ScoreFile() {
-        initFile();
-        loadHighScoresFromFile();
+        initializeFile();
+        loadScoresFromFile();
     }
 
-    public void initFile() {
+    public void initializeFile() {
         try {
-            file = new File(FILEPATH);
+            file = new File(filepath);
             if (file.createNewFile()) {
                 System.out.println("File created: " + file.getPath());
             } else {
@@ -39,7 +39,7 @@ public class ScoreFile {
         }
     }
 
-    public void loadHighScoresFromFile() {
+    public void loadScoresFromFile() {
         try {
             Scanner reader = new Scanner(file);
             while (reader.hasNextLine()) {
@@ -55,19 +55,19 @@ public class ScoreFile {
 
     public void loadScoreFromString(String scoreString) {
         Score score = new Score();
-        String[] scoreStrings = scoreString.split(DELIMITER, NUM_COLS);
-        score.setName(scoreStrings[COL_NAME]);
-        score.setBallsUsed(Integer.parseInt(scoreStrings[COL_BALLS_USED]));
-        score.setBricksDestroyed(Integer.parseInt(scoreStrings[COL_BRICKS_DESTROYED]));
-        score.setScore(Float.parseFloat(scoreStrings[COL_SCORE]));
+        String[] scoreStrings = scoreString.split(delimiter, ColumnAmount);
+        score.setName(scoreStrings[nameColumn]);
+        score.setScore(Float.parseFloat(scoreStrings[scoreColumn]));
+        score.setUsedBalls(Integer.parseInt(scoreStrings[usedBallsColumn]));
+        score.setDestroyedBricks(Integer.parseInt(scoreStrings[destroyedBricksColumn]));
         // might be duplicated
         scores.add(score);
         sortByScores();
     }
 
-    public void saveHighScoresToFile() {
+    public void saveScoresToFile() {
         try {
-            FileWriter writer = new FileWriter(FILEPATH);
+            FileWriter writer = new FileWriter(filepath);
             sortByScores();
             for (Score score: scores) {
                 writer.write(score.scoreToString());
@@ -79,29 +79,29 @@ public class ScoreFile {
         }
     }
 
-    public void addOrUpdateScore(Score score) {
+    public void UpdateScoreFile(Score score) {
 
-        if (scoreExists(score)) {
-            Score existing = scores.get(getIdxByName(score.getName()));
+        if (hasScore(score)) {
+            Score existing = scores.get(getIdName(score.getName()));
             if (score.isBetterThan(existing)) {
                 scores.remove(existing);
                 scores.add(score);
                 sortByScores();
-                saveHighScoresToFile();
+                saveScoresToFile();
             } else if (existing.equals(score)) {
                 // if the current score is the best score
                 sortByScores();
-                saveHighScoresToFile();
+                saveScoresToFile();
             }
         } else {
             scores.add(score);
             sortByScores();
-            saveHighScoresToFile();
+            saveScoresToFile();
         }
     }
 
-    private boolean scoreExists(Score score) {
-        return getIdxByName(score.getName()) != SCORE_NOT_FOUND;
+    private boolean hasScore(Score score) {
+        return getIdName(score.getName()) != noScore;
     }
 
     private void sortByScores() {
@@ -120,14 +120,14 @@ public class ScoreFile {
         }
     }
 
-    private int getIdxByName(String name) {
+    private int getIdName(String name) {
         for (int i = 0; i < scores.size(); i++) {
             Score score = scores.get(i);
             if (score.getName().equals(name)) {
                 return i;
             }
         }
-        return SCORE_NOT_FOUND;
+        return noScore;
     }
 
     public ArrayList<Score> getScores() {
