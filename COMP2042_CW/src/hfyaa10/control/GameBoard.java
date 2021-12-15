@@ -15,13 +15,13 @@
  *  You should have received a copy of the GNU General Public License
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package hfyaa10.model;
+package hfyaa10.control;
 
-import hfyaa10.model.level.Wall;
+import hfyaa10.control.Wall;
 import hfyaa10.model.player.Paddle;
 
 import hfyaa10.model.brick.Brick;
-import hfyaa10.debug.DebugConsole;
+import hfyaa10.control.DebugConsole;
 import hfyaa10.model.ball.Ball;
 import hfyaa10.model.score.ScoreTab;
 import hfyaa10.model.score.ScoreFile;

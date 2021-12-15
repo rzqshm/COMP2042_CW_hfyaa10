@@ -15,9 +15,7 @@
  *  You should have received a copy of the GNU General Public License
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package hfyaa10.debug;
-
-import hfyaa10.model.level.Wall;
+package hfyaa10.control;
 
 import javax.swing.*;
 import javax.swing.event.ChangeListener;

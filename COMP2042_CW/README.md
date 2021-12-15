@@ -6,7 +6,6 @@ Brick Destroy game created by FilippoRanza. (https://github.com/FilippoRanza/Bri
 
 Brick Destroy is a simple arcade video game with the objective of destroying
 walls of bricks using a ball and paddle.
-
 ##Game Controls
 
 `SPACE` to start or pause the game.     
@@ -14,7 +13,7 @@ walls of bricks using a ball and paddle.
 `D` to move right.      
 `A` to move left.       
 `ALT`+`SHIFT`+`F1` to open the console.
-##About Game
+##More about the game
 The Brick Destroyer Game created by FilippoRanza requires players to break walls using a 
 paddle and a ball. These walls consists of bricks. The player would have to hit all of
 the bricks with the ball to destroy the wall, which can also be known as a Level.
@@ -24,16 +23,46 @@ cement or steel).
 
 A few additional features have been added to the game as per instructed by 
 the Coursework.Here are the Additional Features:
-#### Additional Features
+#### Score and Reward System
 
 - Scoring System -> the game now counts your score according to the amount 
-of bricks destroyed and displays it on the screen. It also will ask for a 
-username before playing as it has a High Score Leaderboard which can be viewed.
+of bricks destroyed and displays it on the screen. These scores will be saved
+and ranked in the High Score Leaderboard which can now also be viewed.
 - Reward System -> a Bonus Multiplier for the score has been added. It multiplies 
-the points of a player when destroying bricks and adds it to the score. The more 
-bricks the player hits in a row, the bigger the point multiplication.
-- 
+the points a player gets when destroying bricks and adds it to the score. The more 
+bricks the player hits in a row without letting the ball fall, the bigger the point
+multiplication.
+- Log In feature -> the game will now ask for the player's username before starting 
+the game so that they can be saved to the High Score Leaderboard.
+#### Information Screen
+- Info/Help Screen -> A `help` button which enables the help/information screen
+has been added to the Main Menu of the game. The Information Screen will display 
+the basic game operations such as the game controls, brief game Objective and scoring
+system. This is so that players can understand the game better. It can be closed by 
+an `exit` button that will on the Information Screen.
+#### Game Modifications
 
+- Added New Levels -> 2 new Levels have been added to the game. Levels increase along 
+with it's Difficulty. This makes the game longer as it has more playable levels hence 
+making it more interesting and challenging. The levels from 1st to 6th are now as 
+follows:
+
+   - Clay
+   - Clay + Cement
+   - Clay + Steel
+   - Cement
+   - Steel
+   - Cement + Steel
+  
+- Modified Menu Screen -> The menu screen's appearance has been modified. The button
+layout, Colours and Texts on the Menu Screen has been changed. There are now 3 buttons 
+instead of 2.
+---
+## Refactoring Project
+
+- ### Re-organized Packages and Classes
+  
+  - Packages are made and named according to what classes they contain. 
 
 
 
