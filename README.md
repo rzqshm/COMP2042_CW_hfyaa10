@@ -66,6 +66,7 @@ instead of 2.
   related get moved and organized into Packages. Some classes have been renamed to better
   represent itself in the program. Multiple packages have been made to organize the classes
   but all are under 3 main packages which are `control`,`model` and `viewGui`.
+
   
   - Encapsulation -> Has been done on big classes and methods so that the code is more 
   understandable to programmers. It has been done to classes and methods that disclose the 
@@ -76,12 +77,13 @@ instead of 2.
   controller aspect of the design pattern can be seen by the package structure. Here are the
   packages:
   
-    - `model` - ball, brick, player, score
+    - `model` - ball, brick, player, score, levels
     - `viewGui` - GameWindow, HelpScreen, MenuScreen
-    - `control` - GameBoard, debug and levels
+    - `control` - GameBoard, debug
 
+---
 
-
+by Razeeq Suhaimee (hfyaa10) 20203994
 
 
 

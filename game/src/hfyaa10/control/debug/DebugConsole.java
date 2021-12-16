@@ -18,7 +18,7 @@
 package hfyaa10.control.debug;
 
 import hfyaa10.control.GameBoard;
-import hfyaa10.control.levels.Wall;
+import hfyaa10.model.levels.Wall;
 import hfyaa10.model.ball.Ball;
 
 

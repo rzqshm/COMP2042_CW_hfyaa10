@@ -15,7 +15,7 @@
  *  You should have received a copy of the GNU General Public License
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package hfyaa10.control.levels;
+package hfyaa10.model.levels;
 
 import hfyaa10.model.ball.RubberBall;
 import hfyaa10.model.brick.Brick;

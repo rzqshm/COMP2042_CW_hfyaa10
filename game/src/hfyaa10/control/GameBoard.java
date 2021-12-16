@@ -17,7 +17,7 @@
  */
 package hfyaa10.control;
 
-import hfyaa10.control.levels.Wall;
+import hfyaa10.model.levels.Wall;
 import hfyaa10.model.player.Paddle;
 
 import hfyaa10.model.brick.Brick;
@@ -113,15 +113,15 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
             wall.findImpacts();
 
             inGameScoreMonitor = String.format(
-                    "Bricks: %d Balls %d Score: %.0f",
+                    "Bricks: %d Balls %d Bonus Multiplier: %.2f",
                     wall.getBrickCount(),
                     wall.getBallCount(),
-                    wall.User.getScore()
+                    wall.User.getBonusMultiplier()
                     );
 
             inGameMultiplierMonitor = String.format(
-                    "Current Streak Bonus Multiplier: %.2f",
-                    wall.User.getBonusMultiplier()
+                    "Score: %.2f",
+                    wall.User.getScore()
             );
 
             if(wall.isBallLost()){
@@ -181,8 +181,8 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
         clear(g2d);
 
         g2d.setColor(Color.WHITE);
-        g2d.drawString(inGameScoreMonitor,225,225); // display score  on screen
-        g2d.drawString(inGameMultiplierMonitor,395,445); // display bonus multiplier on screen
+        g2d.drawString(inGameMultiplierMonitor,265,225); // display score  on screen
+        g2d.drawString(inGameScoreMonitor,4,445); // display bricks,balls and Bonus Multiplier
 
         drawBall(wall.ball,g2d);
 
