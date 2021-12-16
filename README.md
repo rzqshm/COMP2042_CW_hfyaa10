@@ -1,19 +1,19 @@
 # Brick Destroy
-####Software Maintenance Coursework
+#### Software Maintenance Coursework
 
 This coursework is about implementing Software Maintenance principles to an original
 Brick Destroy game created by FilippoRanza. (https://github.com/FilippoRanza/Brick_Destroy)
 
 Brick Destroy is a simple arcade video game with the objective of destroying
 walls of bricks using a ball and paddle.
-##Game Controls
+## Game Controls
 
 `SPACE` to start or pause the game.     
 `ESC` to access the pause menu.     
 `D` to move right.      
 `A` to move left.       
 `ALT`+`SHIFT`+`F1` to open the console.
-##More about the game
+## More about the game
 The Brick Destroyer Game created by FilippoRanza requires players to break walls using a 
 paddle and a ball. These walls consists of bricks. The player would have to hit all of
 the bricks with the ball to destroy the wall, which can also be known as a Level.
