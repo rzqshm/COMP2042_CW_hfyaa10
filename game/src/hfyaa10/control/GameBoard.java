@@ -61,8 +61,8 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
 
     private Wall wall;
 
+    private String inGameStats;
     private String inGameScoreMonitor;
-    private String inGameMultiplierMonitor;
 
     private boolean showPauseMenu;
 
@@ -91,8 +91,8 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
 
 
         this.initialize();
+        inGameStats = "";
         inGameScoreMonitor = "";
-        inGameMultiplierMonitor = "";
         wall = new Wall(new Rectangle(0,0,DEF_WIDTH,DEF_HEIGHT),BRICK_NUM,LINE_NUM,BRICK_DIMENSIONRATIO,new Point(INITIAL_X_BALLPOSITION,INITIAL_Y_BALLPOSITION));
 
         // initialise score file
@@ -112,14 +112,14 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
             wall.move();
             wall.findImpacts();
 
-            inGameScoreMonitor = String.format(
-                    "Bricks: %d Balls %d Bonus Multiplier: %.2f",
+            inGameStats = String.format(
+                    "Bricks: %d Balls: %d Bonus Multiplier: %.2f",
                     wall.getBrickCount(),
                     wall.getBallCount(),
                     wall.User.getBonusMultiplier()
                     );
 
-            inGameMultiplierMonitor = String.format(
+            inGameScoreMonitor = String.format(
                     "Score: %.2f",
                     wall.User.getScore()
             );
@@ -128,7 +128,7 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
                 scoreFile.UpdateScoreFile(wall.User);
                 if(wall.ballEnd()){
                     wall.wallReset();
-                    inGameScoreMonitor = "Game over";
+                    inGameStats = "Game over";
                     scoreView.showScoreTable();
                 }
                 wall.ballReset();
@@ -136,7 +136,7 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
             }
             else if(wall.isDone()){
                 if(wall.hasLevel()){
-                    inGameScoreMonitor = "Go to Next Level";
+                    inGameStats = "Go to Next Level";
 
                     //show high score screen
                     scoreFile.UpdateScoreFile(wall.User);
@@ -148,7 +148,7 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
                     wall.nextLevel();
                 }
                 else{
-                    inGameScoreMonitor = "ALL WALLS DESTROYED";
+                    inGameStats = "ALL WALLS DESTROYED";
 
                     scoreFile.UpdateScoreFile(wall.User);
                     scoreView.showScoreTable();
@@ -181,8 +181,8 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
         clear(g2d);
 
         g2d.setColor(Color.WHITE);
-        g2d.drawString(inGameMultiplierMonitor,265,225); // display score  on screen
-        g2d.drawString(inGameScoreMonitor,4,445); // display bricks,balls and Bonus Multiplier
+        g2d.drawString(inGameScoreMonitor,265,225); // display score  on screen
+        g2d.drawString(inGameStats,4,445); // display bricks,balls and Bonus Multiplier
 
         drawBall(wall.ball,g2d);
 
@@ -371,7 +371,7 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
             repaint();
         }
         else if(restartButtonRect.contains(p)){
-            inGameScoreMonitor = "Restarting Game...";
+            inGameStats = "Restarting Game...";
             wall.ballReset();
             wall.wallReset();
             showPauseMenu = false;
@@ -424,7 +424,7 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
 
     public void onLostFocus(){
         gameTimer.stop();
-        inGameScoreMonitor = "Focus Lost";
+        inGameStats = "Focus Lost";
         repaint();
     }
 
